@@ -1,0 +1,287 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Employee Details APP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta property="twitter:card" content="summary_large_image" />
+  <style>
+    html {
+      line-height: 1.15;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+    }
+
+    p,
+    li,
+    ul,
+    pre,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      padding: 0;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    button,
+    select {
+      text-transform: none;
+    }
+
+    button,
+    [type="button"],
+    [type="reset"],
+    [type="submit"] {
+      -webkit-appearance: button;
+    }
+
+    button::-moz-focus-inner,
+    [type="button"]::-moz-focus-inner,
+    [type="reset"]::-moz-focus-inner,
+    [type="submit"]::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+    }
+
+    button:-moz-focus,
+    [type="button"]:-moz-focus,
+    [type="reset"]:-moz-focus,
+    [type="submit"]:-moz-focus {
+      outline: 1px dotted ButtonText;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    input {
+      padding: 2px 4px;
+    }
+
+    img {
+      display: block;
+    }
+  </style>
+  <style>
+    html {
+      font-family: Open Sans;
+      font-size: 1rem;
+    }
+
+    body {
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      text-transform: none;
+      letter-spacing: normal;
+      line-height: 1.625;
+      color: var(--dl-color-secondary-400);
+      background-color: var(--dl-color-gray-white);
+
+    }
+  </style>
+  <link rel="shortcut icon" href="static/playground_assets/saathimart s logo.png" type="icon/png" sizes="32x32" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" />
+  <style>
+    html * {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #d2d6da;
+    }
+  </style>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+  <div>
+  
+    <link href="{% static 'css/profile.css' %}" rel="stylesheet" />
+    <title>Profile - Employee Details APP</title>
+    <meta property="og:title" content="Profile - Employee Details APP" />
+    
+    
+    {% if listings %}
+      {% for list in  listings %}
+    <div class="profile-container">
+      <div class="profile-profile">
+        <img alt="image" src="{{ list.profile.url }}" class="profile-image" />
+        <div class="profile-container1">
+          <div class="profile-container2">
+            <h4 class="profile-employe-name">{{list.fname}}</h4>
+            <div class="outline-blue-button-container rootClassName1">
+              <button class="outline-blue-button-button button buttonSmall">
+                <span>Mail</span>
+              </button>
+            </div>
+            
+          </div> 
+          <div class="profile-container3">
+            <h1 class="profile-title">Designation</h1>
+            <h1 class="profile-value">{{list.designation}}</h1>
+          </div>
+          <div class="profile-container4">
+            <h1 class="profile-title1">Role</h1>
+            <h1 class="profile-value1">{{list.role}}</h1>
+          </div>
+          <div class="profile-container5">
+            <h1 class="profile-title2">Branch</h1>
+            <h1 class="profile-value2">{{list.branch}}</h1>
+          </div>
+          <div class="profile-container6">
+            <h1 class="profile-title3">Title</h1>
+            <h1 class="profile-value3">value</h1>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="container text-center" style="padding-top: 120px;">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="error-template">
+                <h1 class="text-black">Oops!</h1>
+                <h2 class="text-black">No employes with searched keyword</h2>
+                <div class="error-details text-black">
+                  <span>Sorry, an error has occured, employ not found!</span>
+                </div>
+                <div class="error-actions" style="padding-top: 30px;padding-bottom: 150px;">
+                  <a href="/index/" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-home"></span>Take Me Home </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      </div> 
+      <footer class="footer-footer">
+        <div class="footer-container">
+          <div class="footer-container1">
+            <span class="footer-text">Saathimart</span>
+            <span><span>Copyright © 2021 Aashutosh Shrestha</span></span>
+          </div>
+          <div class="footer-container2">
+            <div class="footer-container3">
+              <span class="footer-text3 large">Company</span>
+              <a href="https://www.saathimart.com/page/aboutus" target="_blank" rel="noreferrer noopener"
+                class="footer-link large">
+                About Us
+              </a>
+              <a href="https://www.saathimart.com/blog" target="_blank" rel="noreferrer noopener"
+                class="footer-link1 large">
+                Blogs
+              </a>
+              <a href="https://www.saathimart.com/user/profile/packages" target="_blank" rel="noreferrer noopener"
+                class="footer-text4 large">
+                Afffiliate
+              </a>
+            </div>
+            <div class="footer-container4">
+              <span class="footer-text5 large">Products</span>
+              <a href="https://www.saathimart.com/" target="_blank" rel="noreferrer noopener"
+                class="footer-link2 large">
+                B2C Commece
+              </a>
+              <a href="https://bit.ly/3zI1e8R" target="_blank" rel="noreferrer noopener" class="footer-link3 large">
+                Mobile App
+              </a>
+              <a href="https://saathimartpartners.com/" target="_blank" rel="noreferrer noopener"
+                class="footer-link4 large">
+                B2B Commerce
+              </a>
+            </div>
+          </div>
+        </div>
+        <img alt="image" src="static/playground_assets/waves-white.svg" class="footer-image" />
+      </footer>
+      <div data-role="Header" class="header-header rootClassName1">
+        <nav class="header-nav">
+          <div class="header-container">
+            <a href="/home" class="header-navlink">
+              <h1 class="header-text large">Employee Details App</h1>
+            </a>
+        
+            <div class="header-container1">
+              <div class="header-container2">
+                <div class="primary-pink-button-container">
+                  <button class="primary-pink-button-button button buttonSmall">
+                    <a href="/admin" class="header-navlink">Admin</a>
+                  </button>
+                </div>
+              </div>
+              <div data-type="BurgerMenu" class="header-burger-menu">
+                <svg viewBox="0 0 1024 1024" class="header-icon">
+                  <path d="M128 256h768v86h-768v-86zM128 554v-84h768v84h-768zM128 768v-86h768v86h-768z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div data-type="MobileMenu" class="header-mobile-menu">
+          <div class="header-top">
+            <a href="/home.html" class="header-navlink2 large">
+              Soft UI Design System
+            </a>
+            <div data-type="CloseMobileMenu" class="header-close-menu">
+              <svg viewBox="0 0 1024 1024" class="header-icon2">
+                <path d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z">
+                </path>
+              </svg>
+            </div>
+          </div>
+          <div class="header-mid">
+            <div class="header-menu1">
+              <a href="/home.html" class="header-navlink3 large">Home</a>
+              <a href="/profile.html" class="header-navlink4 large">
+                Profile
+              </a>
+              <a href="/coming-soon.html" class="header-navlink5 large">
+                Coming Soon
+              </a>
+            </div>
+          </div>
+          <div class="header-bot">
+            <div class="primary-pink-button-container">
+              <button class="primary-pink-button-button button buttonSmall">
+                <span>buy now</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

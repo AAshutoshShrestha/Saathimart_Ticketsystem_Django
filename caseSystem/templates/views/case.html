@@ -1,0 +1,96 @@
+{% extends 'views/base.html' %}
+{% load static %}
+
+{% block title %} ALL | Case{% endblock %}
+
+{% block main_content %} 
+<div class="rounded-md bg-white p-4 ml-16 mt-6 mb-10 h-full md:ml-64">
+    <div class="flex items-center justify-between pb-6">
+      <div>
+        <h2 class="font-semibold text-gray-600">Case List for 
+         <span class="font-semibold text-green-600"> {{profile.department}}</span>
+           Department</h2>
+        <span class="text-xs">All Case items <span class="font-bold text-orange-500"> [Department wise]</span></span>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="ml-10 space-x-8 lg:ml-40">
+          <a href="{% url 'createCase'%}">
+            <button class="cursor-pointer rounded-md bg-orange-500 px-4 py-2 font-semibold tracking-wide text-white hover:bg-orange-600">Create New</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="-mx-4 overflow-x-auto px-4 py-4 sm:-mx-8 sm:px-8">
+        <div class="inline-block min-w-full overflow-hidden rounded-lg shadow">
+          <table class="min-w-full leading-normal">
+            <thead>
+              <tr>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Created By</th>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">topic</th>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Category</th>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">Priority</th>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">status</th>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">description</th>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">note</th>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">date_created</th>
+                <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in cases %}
+              <tr>
+                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                  <div class="flex items-center">
+                    <div class="h-10 w-10 flex-shrink-0">
+                      <img class="h-full w-full rounded-full" src="{{i.user.Profile.url}}" alt="" />
+                    </div>
+                    <div class="ml-3">
+                      <p class="whitespace-no-wrap text-gray-900">{{ i.user}}</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                  <p class="whitespace-no-wrap text-gray-900">{{ i.topic }}</p>
+                </td>
+                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                  <p class="whitespace-no-wrap text-gray-900">{{ i.Category }}</p>
+                </td>
+                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                  <p class="whitespace-no-wrap text-gray-900">{{ i.Priority }}</p>
+                </td>
+                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                  {% if i.Status == "Pending" %}
+                    <p class="whitespace-no-wrap text-gray-900 bg-green-500 rounded-full px-3 py-1">{{ i.Status }}</p>
+                  {% elif i.Status == "On Process" %}
+                    <p class="whitespace-no-wrap text-gray-900 bg-blue-500 rounded-full px-3 py-1">{{ i.Status }}</p>
+                  {% else %}
+                  <p class="whitespace-no-wrap text-gray-900 bg-orange-500 rounded-full px-3 py-1">{{ i.Status }}</p>
+                  {% endif %}
+                </td>
+                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                  <p class="whitespace-no-wrap text-gray-900">{{ i.description }}</p>
+                </td>
+                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                  <p class="whitespace-no-wrap text-gray-900">{{ i.note }}</p>
+                </td>
+                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                  <p class="whitespace-no-wrap text-gray-900">{{ i.date_created }}</p>
+                </td>
+                <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                  <a href="{% url 'updateCase' i.id %}">
+                    <span class="material-icons text-red-500">edit</span>
+                    </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+    
+
+{% endblock %}

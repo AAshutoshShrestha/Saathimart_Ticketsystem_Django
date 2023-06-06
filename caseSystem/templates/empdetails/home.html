@@ -1,0 +1,322 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Employee Details APP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <style>
+    html {
+      font-family: Open Sans;
+      font-size: 1rem;
+    }
+
+    body {
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      text-transform: none;
+      letter-spacing: normal;
+      line-height: 1.625;
+      color: var(--dl-color-secondary-400);
+      background-color: var(--dl-color-gray-white);
+
+    }
+    * {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+    }
+
+    p,
+    li,
+    ul,
+    pre,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      padding: 0;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    button,
+    select {
+      text-transform: none;
+    }
+
+    button,
+    [type="button"],
+    [type="reset"],
+    [type="submit"] {
+      -webkit-appearance: button;
+    }
+
+    button::-moz-focus-inner,
+    [type="button"]::-moz-focus-inner,
+    [type="reset"]::-moz-focus-inner,
+    [type="submit"]::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+    }
+
+    button:-moz-focus,
+    [type="button"]:-moz-focus,
+    [type="reset"]:-moz-focus,
+    [type="submit"]:-moz-focus {
+      outline: 1px dotted ButtonText;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    input {
+      padding: 2px 4px;
+    }
+
+    img {
+      display: block;
+    }
+  </style>
+
+  <link rel="shortcut icon" href="{% static 'playground_assets/saathimart s logo.png' %}" type="icon/png"
+    sizes="32x32" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" />
+  <style>
+    html * {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #d2d6da;
+    }
+  </style>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+
+<body>
+  <div>
+    <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+    <title>Employee Details APP</title>
+    <meta property="og:title" content="Employee Details APP" />
+    <!-- menu top bar -->
+    <div class="relative bg-white z-10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="flex items-center justify-between border-b-2 border-gray-200 py-4 md:justify-end md:space-x-10">
+          <div class="flex justify-start lg:w-0 lg:flex-1">
+            <a href="/">
+              <img class="h-20 w-auto sm:h-16"
+                src="https://www.saathimart.com/public/files/FFE252612EE0A7F-saathimart_logo.png" alt="" />
+            </a>
+          </div>
+          <div class="-my-2 -mr-2 md:hidden">
+            <button type="button"
+              class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              aria-expanded="false">
+              <span class="sr-only">Open menu</span>
+              <!-- Heroicon name: outline/menu -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+            <a href="/login" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Sign in
+            </a>
+            <a href="/admin"
+              class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-600">
+              Admin </a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden">
+        <div class="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+          <div class="px-5 pt-5 pb-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <img class="h-20 w-auto sm:h-16"
+                  src="https://www.saathimart.com/public/files/939AD50599C002C-Square_saathimart_logo.png" alt="" />
+              </div>
+              <div class="-mr-2">
+                <button type="button"
+                  class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <span class="sr-only">Close menu</span>
+                  <!-- Heroicon name: outline/x -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-6 py-3 px-5">
+            <!-- <div class="grid grid-cols-2 gap-y-2 gap-x-4">
+                  <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Pricing </a>
+        
+                </div> -->
+                
+                <div class="grid grid-cols-2 justify-end space-x-12 sm:grid-cols-4">
+                  <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Docs </a>
+                  <a href="/dashboard"
+                    class="flex w-full items-center justify-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700">
+                    Sign in </a>
+                  <a href="/admin"
+                    class="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-600">
+                    Admin </a>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="home-container">
+    <div data-role="Header" class="header-header rootClassName">
+
+
+    </div>
+    <div class="home-hero ">
+      <div class="home-container1">
+        <div class="home-card">
+          <h1 class="home-text headingOne">Employ details App</h1>
+          <h1 class="home-text1 headingOne">Saathimart</h1>
+          <span class="home-text2 lead">
+            <span>Find details of Saathimart employ using Employe ID</span>
+          </span>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 search-form" action="{% url 'search' %}">
+            <input name="search" type="search" class="home-textinput small input text-black"
+              placeholder="Search by Employee ID" aria-label="Search">
+
+          </form>
+          <div class="home-container2">
+            <img alt="Saathimart"
+              src={% static 'image/Main_logo.png' %}
+              href="https://www.saathimart.com" loading="lazy" class="home-image" />
+            <!-- <img alt="Saathimart_partners"src="https://www.saathimart.com/public/200-109/files/54F968C7D4986C0-saathimart_partners.png"
+                  href="https://www.saathimart.com" loading="lazy" class="home-image1" /> -->
+            <img alt="Saathi production"
+              src={% static 'image/Saathi_production.png' %}
+              href="https://www.saathimart.com" loading="lazy" class="home-image2" />
+
+            <img alt="Saathi eXPRESS"
+              src="{% static 'image/saathi_express.png' %}" href="Https://Saathimart.com" loading="lazy" class="home-image3" />
+            {% comment %} <img alt="SaathiSTARUP"
+              src="{% static 'image/saathistartup.png' %}" loading="lazy"
+              class="home-image2" /> {% endcomment %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <img alt="image" src="{% static 'playground_assets/curved5-1400w.jpg' %}" class="home-image5" />
+    <section class="home-features">
+      <div class="feature-card-container">
+        <img alt="image" src="{% static 'playground_assets/cube1.svg' %}" class="feature-card-image" />
+        <h5 class="feature-card-text headingThree">
+          <span>O2O platform</span>
+        </h5>
+        <span class="feature-card-text1">
+          <span>Choose the best design system for your next product.</span>
+        </span>
+      </div>
+      <div class="feature-card-container">
+        <img alt="image" src="{% static 'playground_assets/person1.svg' %}" class="feature-card-image" />
+        <h5 class="feature-card-text headingThree">
+          <span>Affiliate</span>
+        </h5>
+        <span class="feature-card-text1">
+          <span>Get the latest design ideas and turn it into reality.</span>
+        </span>
+      </div>
+      <div class="feature-card-container">
+        <img alt="image" src="{% static 'playground_assets/rocket1.svg' %}" class="feature-card-image" />
+        <h5 class="feature-card-text headingThree">
+          <span>B2B commerce</span>
+        </h5>
+        <span class="feature-card-text1">
+          <span>Make your code easier to maintain using variables.</span>
+        </span>
+      </div>
+      <div class="feature-card-container">
+        <img alt="image" src="{% static 'playground_assets/credit%20card1.svg' %}" class="feature-card-image" />
+        <h5 class="feature-card-text headingThree">
+          <span>Mobile APP</span>
+        </h5>
+        <span class="feature-card-text1">
+          <span>This design system is fully supported on any device.</span>
+        </span>
+      </div>
+    </section>
+    <footer class="footer-footer">
+      <div class="footer-container">
+        <div class="footer-container1">
+          <span class="footer-text">Saathimart</span>
+          <span><span>Copyright © 2021 Aashutosh Shrestha</span></span>
+        </div>
+        <div class="footer-container2">
+          <div class="footer-container3">
+            <span class="footer-text3 large">Company</span>
+            <a href="https://www.saathimart.com/page/aboutus" target="_blank" rel="noreferrer noopener"
+              class="footer-link large">
+              About Us
+            </a>
+            <a href="https://www.saathimart.com/blog" target="_blank" rel="noreferrer noopener"
+              class="footer-link1 large">
+              Blogs
+            </a>
+            <a href="https://www.saathimart.com/user/profile/packages" target="_blank" rel="noreferrer noopener"
+              class="footer-text4 large">
+              Afffiliate
+            </a>
+          </div>
+          <div class="footer-container4">
+            <span class="footer-text5 large">Products</span>
+            <a href="https://www.saathimart.com/" target="_blank" rel="noreferrer noopener" class="footer-link2 large">
+              B2C Commece
+            </a>
+            <a href="https://bit.ly/3zI1e8R" target="_blank" rel="noreferrer noopener" class="footer-link3 large">
+              Mobile App
+            </a>
+            <a href="https://saathimartpartners.com/" target="_blank" rel="noreferrer noopener"
+              class="footer-link4 large">
+              B2B Commerce
+            </a>
+          </div>
+        </div>
+      </div>
+      <img alt="image" src="{% static 'playground_assets/waves-white.svg' %}" class="footer-image" />
+    </footer>
+  </div>
+  </div>
+</body>
+
+</html>

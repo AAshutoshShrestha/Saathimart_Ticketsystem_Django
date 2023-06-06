@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organizational Heirarchy</title>
+    <script src="{% static 'vendors/OrgChartJS/orgchart.js' %}"></script>
+
+</head>
+<style>
+    html,
+    body {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        font-family: Helvetica;
+        overflow: hidden;
+    }
+
+    #tree {
+        width: 100%;
+        height: 100%;
+    }
+
+    .node rect {
+        fill: #85c67e;
+    }
+
+    .node text {
+        fill: white;
+    }
+
+    .node.group rect {
+        fill: #ea9f71;
+    }
+</style>
+
+<body>
+    <div style="width:100%; height:700px;" id="tree">
+    <script src="{% static 'js/chart.js' %}">
+        OrgChart.templates.group.link = '<path stroke-linejoin="round" stroke="#FFCA28" stroke-width="2px" fill="none" d="M{xa},{ya} {xb},{yb} {xc},{yc} L{xd},{yd}" />';
+OrgChart.templates.group.nodeMenuButton = 'active';
+OrgChart.templates.group.min = Object.assign({}, OrgChart.templates.group);
+OrgChart.templates.group.min.imgs = "{val}";
+OrgChart.templates.group.min.img_0 = "";
+OrgChart.templates.group.min.description = '<text data-width="250" data-text-overflow="multiline" style="font-size: 14px;" fill="#aeaeae" x="125" y="100" text-anchor="middle">{val}</text>';
+
+
+var chart = new OrgChart(document.getElementById("tree"), {
+    layout: OrgChart.treeRightOffset,
+    mouseScrool: OrgChart.none,
+    template: "olivia",
+    enableDragDrop: true,
+    nodeMouseClick: OrgChart.action.edit,
+    nodeMenu: {
+        details: { text: "Details" },
+        edit: { text: "Edit" },
+        add: { text: "Add" },
+        remove: { text: "Remove" }
+    },
+    dragDropMenu: {
+        addInGroup: { text: "Add in group" },
+        addAsChild: { text: "Add as child" }
+    },
+    nodeBinding: {
+        imgs: "img",
+        description: "description",
+        field_0: "name",
+        field_1: "title",
+        img_0: "img",
+
+    },
+    tags: {
+        "group": {
+            template: "group",
+        },
+        "IT-group": {
+            subTreeConfig: {
+                columns: 2
+            }
+        },
+        "sales-group": {
+            subTreeConfig: {
+                columns: 1
+            }
+        },
+        "hrs-group": {
+            min: true,
+            subTreeConfig: {
+                columns: 2
+            }
+        },
+        "Ecommerce-group": {
+            min: true,
+            subTreeConfig: {
+                columns: 2
+            }
+        },
+    }
+});
+
+var groupContextMenu = new OrgChart.menuUI();
+groupContextMenu.init(chart);
+
+chart.on('redraw', function (sender) {
+    for (var id in sender.nodes) {
+        var node = sender.nodes[id];
+        if (node.stChildrenIds.length) {
+            var nodeElement = document.querySelector('[data-n-id=' + node.id + ']');
+            if (nodeElement) {
+                nodeElement.addEventListener('contextmenu', function (e) {
+                    e.preventDefault();
+                    var id = this.getAttribute('data-n-id');
+                    groupContextMenu.show(e.pageX, e.pageY, id, null, {
+                        addInGroup: {
+                            text: "Add New In Group",
+                            icon: OrgChart.icon.add(16, 16, '#ccc'),
+                            onClick: function (id) {
+                                chart.addNode({ id: OrgChart.randomId(), stpid: id });
+                            }
+                        }
+                    });
+                });
+            }
+        }
+    }
+
+    groupContextMenu.hide();
+});
+
+chart.on('drop', function (sender, draggedNodeId, droppedNodeId) {
+    var draggedNode = sender.getNode(draggedNodeId);
+    var droppedNode = sender.getNode(droppedNodeId);
+
+    if (droppedNode.tags.indexOf("group") != -1 && draggedNode.tags.indexOf("group") == -1) {
+        var draggedNodeData = sender.get(draggedNode.id);
+        draggedNodeData.pid = null;
+        draggedNodeData.stpid = droppedNode.id;
+        sender.updateNode(draggedNodeData);
+        return false;
+    }
+});
+
+chart.on('click', function (sender, args) {
+    if (args.node.tags.indexOf("group") != -1) {
+        if (args.node.min) {
+            sender.maximize(args.node.id);
+        }
+        else {
+            sender.minimize(args.node.id);
+        }
+    }
+    return false;
+});
+
+chart.on('field', function (sender, args) {
+    if (args.node.min) {
+        if (args.name == "img") {
+            var count = args.node.stChildrenIds.length > 5 ? 5 : args.node.stChildrenIds.length;
+            var x = args.node.w / 2 - (count * 32) / 2;
+            for (var i = 0; i < count; i++) {
+                var data = sender.get(args.node.stChildrenIds[i]);
+                args.value += '<image xlink:href="' + data.img + '" x="' + (x + i * 32) + '" y="45" width="32" height="32" ></image>';
+            }
+        }
+    }
+});
+
+chart.load([
+    { id: "Chief", name: "Chief", tags: ["Chief-group", "group"], description: "Top Management" },
+    { id: "IT", name: "Information Technology", pid: 4, tags: ["IT-group", "group"], description: "Information technology" },
+    { id: "Ecommerce", name: "Ecommerce", pid: 4, tags: ["Ecommerce-group", "group"], description: "Ecommerce team" },
+    { id: "sales", name: "Sales Team", pid: 9, tags: ["sales-group", "group"], description: "Sales and Marketing" },
+    { id: "hrs", pid: "Chief", name: "HR Team", tags: ["hrs-group", "group"], description: "Human Resource" },
+
+    { id: 1, stpid: "Chief", name: "Sagar Pokhrel", title: "CEO", img: "https://cdn.balkan.app/shared/2.jpg" },
+
+    { id: 2, pid: "Chief", name: "Anmol basnet", title: "CBD", img: "https://cdn.balkan.app/shared/3.jpg" },
+    { id: 3, pid: "Chief", name: "Praveen Chaudary", title: "COO", img: "https://cdn.balkan.app/shared/4.jpg" },
+    { id: 4, pid: "Chief", name: "Kunal Dutt", title: "CTO", img: "https://cdn.balkan.app/shared/5.jpg" },
+    
+    { id: 5, stpid: "hrs", pid:"2", name: "Prabin thapaliya", title: "HR", img: "https://cdn.balkan.app/shared/11.jpg" },
+    { id: 6, pid:"5", name: "Prashika kharel", title: "HR assistant", img: "https://cdn.balkan.app/shared/10.jpg" },
+    { id: 7, pid:"5", name: "Pravatar", title: "Intern HR", img: "https://cdn.balkan.app/shared/3.jpg" },
+
+    { id: 8, pid:"2", name: "Asher Watts", title: "Junior HR", img: "https://cdn.balkan.app/shared/13.jpg" },
+    
+    { id: 9, pid: "Chief", name: "Skye Terrell", title: "Manager", img: "https://cdn.balkan.app/shared/12.jpg" },
+    { id: 10, stpid: "IT", name: "Kapil Maharjan", title: "IT-Executive", img: "https://cdn.balkan.app/shared/7.jpg" },
+    { id: 11, pid: "10", name: "Anil Shahi", title: "IT-Office", img: "https://cdn.balkan.app/shared/6.jpg" },
+    { id: 17, pid: "10", name: "Devendra", title: "IT-Assistent", img: "https://cdn.balkan.app/shared/6.jpg" },
+
+    { id: 12, stpid: "Ecommerce", name: "Aashutosh Shrestha", title: "IT-Ecommerce Officer", img: "https://cdn.balkan.app/shared/7.jpg" },
+
+    { id: 13, pid:"12", name: "Sandesh Thapa", title: "Ecommerce Assistant", img: "https://cdn.balkan.app/shared/6.jpg" },
+    { id: 14, pid:"12", name: "Susmita ", title: "Vendor-Office", img: "https://cdn.balkan.app/shared/6.jpg" },
+
+    { id: 15, stpid: "sales", name: "Bret Fraser", title: "Sales", img: "https://cdn.balkan.app/shared/13.jpg" },
+    { id: 16, stpid: "sales", name: "Steff Haley", title: "Sales", img: "https://cdn.balkan.app/shared/14.jpg" }
+]);
+
+    </script> 
+
+</body>
+</html>

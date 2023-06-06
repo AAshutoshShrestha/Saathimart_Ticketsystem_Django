@@ -1,0 +1,51 @@
+{% extends 'views/base.html' %}
+{% load static %}
+
+{% block title %} Profile | CaseSystem {% endblock %}
+
+{% block main_content %} 
+<div class="rounded-md bg-white p-4 ml-16 mt-8 mb-10 h-full md:ml-72">
+  <div class="m-6 p-12 flex overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800">
+    <div class="h-72 w-64 rounded-3xl object-cover object-center" style="background-image: url('{{profile.Profile.url}}')"></div>
+  
+    <div class="w-2/3 p-2">
+      <div class="px-6">
+        <h1 class="text-2xl font-semibold text-orange-600 dark:text-white">Profile Details</h1>
+        <h3 class="text-lg pt-2 font-semibold text-gray-800 dark:text-white">UserName : {{user}}</h3>
+        <div class="mt-4 flex items-center text-gray-700 dark:text-gray-200">
+          <span class="material-icons">person</span>
+          <h1 class="text-md px-8">{{profile.name}}</h1>
+        </div>
+        <div class="mt-4 flex items-center text-gray-700 dark:text-gray-200">
+          <span class="material-icons">call</span>
+          <h1 class="text-md px-8">{{profile.phone}}</h1>
+        </div>
+        <div class="mt-4 flex items-center text-gray-700 dark:text-gray-200">
+          <span class="material-icons">mail</span>
+          <h1 class="text-md px-8">{{profile.email}}</h1>
+        </div>
+        <div class="mt-4 flex items-center text-gray-700 dark:text-gray-200">
+          <span class="material-icons">business</span>
+          <h1 class="text-md px-8">{{profile.branch}}</h1>
+        </div>
+        <div class="mt-4 flex items-center text-gray-700 dark:text-gray-200">
+          <span class="material-icons">business</span>
+          <h1 class="text-md px-8">{{profile.department}}</h1>
+        </div>
+        <div class="mt-4 flex items-center text-gray-700 dark:text-gray-200">
+          <span class="material-icons">date_range</span>
+          <h1 class="text-md px-8">{{profile.joining_date}}</h1>
+        </div>
+        <div class="mt-4 flex items-center text-gray-700 dark:text-gray-200">
+          <span class="material-icons">work</span>
+          <h1 class="text-md px-8">{{profile.title}}</h1>
+        </div>
+        <div class="mt-4 flex items-center text-gray-700 dark:text-gray-200">
+          <span class="material-icons">workspaces</span>
+          <h1 class="text-md px-8">{{profile.TeamHead}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

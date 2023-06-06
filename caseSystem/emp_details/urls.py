@@ -1,0 +1,11 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('result',views.search, name='search'),
+    
+]
+
+handler404 = "emp_details.views.page_not_found_view"

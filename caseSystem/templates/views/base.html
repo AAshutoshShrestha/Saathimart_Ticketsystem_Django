@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{% block title %} {% endblock %}</title>
+
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/tailwindBase.css' %}" />
+</head>
+  <body>
+{% comment %} 
+	  {% for notify in notify %}
+	  <p id="messages">{{notify}}</p>
+	{% endfor %}	
+	 {% endcomment %}
+	<div class="flex max-w-8xl items-center justify-between bg-gray-100">
+		<img src="https://www.saathimart.com/public/files/FFE252612EE0A7F-saathimart_logo.png" alt="" class="w-56 py-3 pl-4" />
+
+  
+		<div class="flex items-center mt-2 md:mt-0">
+			<button class="hidden mx-4 text-gray-600 transition-colors duration-200 transform md:block dark:text-gray-200 " aria-label="show notifications">
+				<a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+						<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					  <span class="badge bg-primary badge-number">4</span>
+					</a><!-- End Notification Icon -->
+		  
+				<li class="nav-item dropdown">
+
+					
+					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+					  <li class="dropdown-header">
+						You have 4 new notifications
+						<a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+					  </li>
+					  <li>
+						<hr class="dropdown-divider">
+					  </li>
+		  
+					  <li class="notification-item">
+						<i class="bi bi-exclamation-circle text-warning"></i>
+						<div>
+							{% for notify in notify %}
+								<p id="messages">{{notify}}</p>		  
+							{% endfor %}
+						</div>
+					  </li>
+		  
+					  <li>
+						<hr class="dropdown-divider">
+					  </li>
+		  
+					  <li class="notification-item">
+						<i class="bi bi-x-circle text-danger"></i>
+						<div>
+						  <h4>Atque rerum nesciunt</h4>
+						  <p>Quae dolorem earum veritatis oditseno</p>
+						  <p>1 hr. ago</p>
+						</div>
+					  </li>
+		  
+					  <li>
+						<hr class="dropdown-divider">
+					  </li>
+		  
+					  <li class="notification-item">
+						<i class="bi bi-check-circle text-success"></i>
+						<div>
+						  <h4>Sit rerum fuga</h4>
+						  <p>Quae dolorem earum veritatis oditseno</p>
+						  <p>2 hrs. ago</p>
+						</div>
+					  </li>
+		  
+					  <li>
+						<hr class="dropdown-divider">
+					  </li>
+		  
+					  <li class="notification-item">
+						<i class="bi bi-info-circle text-primary"></i>
+						<div>
+						  <h4>Dicta reprehenderit</h4>
+						  <p>Quae dolorem earum veritatis oditseno</p>
+						  <p>4 hrs. ago</p>
+						</div>
+					  </li>
+		  
+					  <li>
+						<hr class="dropdown-divider">
+					  </li>
+					  <li class="dropdown-footer">
+						<a href="#">Show all notifications</a>
+					  </li>
+		  
+					</ul><!-- End Notification Dropdown Items -->
+		  
+				</li><!-- End Notification Nav -->
+			</button>
+		  <div x-data="{ open: false }">
+			<button @click="open = ! open" class="relative z-10 flex items-center rounded-md border border-transparent bg-white p-2 text-sm text-gray-600 focus:border-orange-500 focus:outline-none focus:ring focus:ring-orange-300 focus:ring-opacity-40 dark:bg-gray-800 dark:text-white dark:focus:ring-blue-400 dark:focus:ring-opacity-40">
+			  <span class="mx-1 px-2 py-2 text-uppercase capitalize">{{ profile.name }}</span>
+			  <svg class="mx-1 h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
+			  </svg>
+			</button>
+	  
+			<div x-show="open" @click.outside="open = false" class="absolute right-0 z-20 mt-2 w-56 overflow-hidden rounded-md bg-white py-2 shadow-xl dark:bg-gray-800">
+			  <a class="-mt-2 flex transform items-center p-3 text-sm text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
+				<img class="mx-1 h-9 w-9 flex-shrink-0 rounded-full object-cover" src="{{profile.Profile.url}}" alt="{{user}} avatar" />
+				<div class="mx-1">
+				  <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{profile.name}}</h1>
+				  <p class="text-sm text-gray-500 dark:text-gray-400 ">{{profile.branch}}</p>
+				</div>
+			  </a>
+			  
+			  <hr class="border-gray-200 dark:border-gray-700" />
+			  <h1 class="block transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-bold">Username: {{user}}</h1>
+
+			  <a href="{% url 'profile' request.user.id %}" class="block transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"> View profile </a>
+	  
+			  <a href="#" class="block transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"> Company profile </a>
+	  
+			  <hr class="border-gray-200 dark:border-gray-700" />
+			  <a href="#" class="block transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"> Team </a>
+	  
+			  <hr class="border-gray-200 dark:border-gray-700" />
+	  
+			  <a href="{% url 'logout' %}" class="block transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"> Sign Out </a>
+			</div>
+		  </div>
+		</div>
+	</div>
+		<!-- Sidebar -->
+		{% include 'views/nav.html' %}
+		<!-- Sidebar ends -->
+		
+	{% block main_content %}
+	
+	{% endblock %}
+
+	{% comment %} {% include 'views/footer.html' %} {% endcomment %}
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

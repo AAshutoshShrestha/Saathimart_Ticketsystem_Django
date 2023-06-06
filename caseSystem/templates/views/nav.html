@@ -1,0 +1,83 @@
+{% load static %}
+<!-- sidebar menu -->
+<div class="sidebar fixed z-10 flex h-full w-14 flex-col border-none bg-orange-600 text-white transition-all duration-300 hover:w-64 dark:bg-gray-900 md:w-64">
+    <div class="hidden px-5 md:block">
+        <div class="mt-5 flex h-8 flex-row items-center">
+            <div class="text-sm font-bold uppercase tracking-wide text-white">Main</div>
+        </div>
+    </div>
+    <div class="flex flex-grow flex-col justify-between overflow-y-auto overflow-x-hidden">
+        <nav class="flex flex-col space-y-1 py-4">
+            <a href="{% url 'home' %}"
+                class="relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 text-white hover:border-green-800 hover:bg-green-500 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600">
+                <span class="ml-4 inline-flex items-center justify-center">
+                    <span class="material-icons h-5 w-5">home</span>            
+                </span>
+                <span class="ml-4 truncate text-sm tracking-wide">Dashboard</span>
+            </a>
+            <!-- <a href="#" class="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-green-800 hover:bg-green-500 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600">
+          <span class="ml-4 inline-flex items-center justify-center">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+          </span>
+          <span class="ml-2 truncate text-sm tracking-wide">Board</span>
+          <span class="ml-auto hidden rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium tracking-wide text-blue-500 md:block">New</span>
+        </a> -->
+
+            <!-- <a href="#" class="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-green-800 hover:bg-green-500 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600">
+          <span class="ml-4 inline-flex items-center justify-center">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
+          </span>
+          <span class="ml-2 truncate text-sm tracking-wide">Messages</span>
+        </a>
+  
+        <a href="#" class="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-green-800 hover:bg-green-500 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600">
+          <span class="ml-4 inline-flex items-center justify-center">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+          </span>
+          <span class="ml-2 truncate text-sm tracking-wide">Notifications</span>
+        </a> -->
+            <a href="{% url 'cases' request.user.id %}"
+                class="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-green-800 hover:bg-green-500 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600">
+                <span class="ml-4 inline-flex items-center justify-center">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15 5V7M15 11V13M15 17V19M5 5C3.89543 5 3 5.89543 3 7V10C4.10457 10 5 10.8954 5 12C5 13.1046 4.10457 14 3 14V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V14C19.8954 14 19 13.1046 19 12C19 10.8954 19.8954 10 21 10V7C21 5.89543 20.1046 5 19 5H5Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
+
+                <span class="ml-2 truncate text-sm tracking-wide">Tickets</span>
+            </a>
+            <div class="hidden px-5 md:block">
+                <div class="mt-5 flex h-8 flex-row items-center">
+                    <div class="text-sm font-bold uppercase tracking-wide text-white">Settings</div>
+                </div>
+            </div>
+         <a href="{% url 'profile' request.user.id %}" class="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-green-800 hover:bg-green-500 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600">
+                <span class="ml-4 inline-flex items-center justify-center">
+                    <span class="material-icons h-5 w-5">person_outline</span>
+                  </span>
+
+
+                <span class="ml-2 truncate text-sm tracking-wide">Profile</span>
+            </a>
+
+            <a href="#"
+                class="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-green-800 hover:bg-green-500 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600">
+                <span class="ml-4 inline-flex items-center justify-center">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10.3246 4.31731C10.751 2.5609 13.249 2.5609 13.6754 4.31731C13.9508 5.45193 15.2507 5.99038 16.2478 5.38285C17.7913 4.44239 19.5576 6.2087 18.6172 7.75218C18.0096 8.74925 18.5481 10.0492 19.6827 10.3246C21.4391 10.751 21.4391 13.249 19.6827 13.6754C18.5481 13.9508 18.0096 15.2507 18.6172 16.2478C19.5576 17.7913 17.7913 19.5576 16.2478 18.6172C15.2507 18.0096 13.9508 18.5481 13.6754 19.6827C13.249 21.4391 10.751 21.4391 10.3246 19.6827C10.0492 18.5481 8.74926 18.0096 7.75219 18.6172C6.2087 19.5576 4.44239 17.7913 5.38285 16.2478C5.99038 15.2507 5.45193 13.9508 4.31731 13.6754C2.5609 13.249 2.5609 10.751 4.31731 10.3246C5.45193 10.0492 5.99037 8.74926 5.38285 7.75218C4.44239 6.2087 6.2087 4.44239 7.75219 5.38285C8.74926 5.99037 10.0492 5.45193 10.3246 4.31731Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
+
+                <span class="ml-2 truncate text-sm tracking-wide">Settings</span>
+            </a>
+        </nav>
+    </div>
+</div>
+<!-- siderbar end -->
