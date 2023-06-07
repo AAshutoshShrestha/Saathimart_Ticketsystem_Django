@@ -4,21 +4,12 @@
 		"src": "caseSystem/wsgi.py",
 		"use": "@vercel/python",
 		"config": {"runtime":"python3.10" }
-	  },
-	  {
-		"src": "build_files.sh",
-		"use": "@vercel/static-build",
-		"config": {"DistDir":"staticfiles_build" }
 	  }
 	],
 	"routes": [
 	  {
 		"src": "/(.*)",
 		"dest": "caseSystem/wsgi.py"
-	  },
-	  {
-		"src": "/static/(.*)",
-		"dest": "Static/$1"
 	  }
 	]
   }
