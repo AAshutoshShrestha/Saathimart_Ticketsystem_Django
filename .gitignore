@@ -1,4 +1,14 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.env/
-*.git/
+.vercel
+*.log
+*.pyc
+__pycache__
+media
+
+# Environments 
+.env 
+.venv 
+env/ 
+venv/ 
+ENV/ 
+env.bak/ 
+venv.bak/ 

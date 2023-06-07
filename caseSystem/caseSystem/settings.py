@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-13l1!$n!n0ael2q+p*-cx$^!3=+c&$=zr#b5@whsd$m(*3c3=*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','172.16.28.106']
+ALLOWED_HOSTS = ['127.0.0.1','172.16.28.106','.vercel.app']
 
 
 # Application definition
@@ -40,9 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'import_export',
-    # 'crispy_forms',
-    # 'crispy_tailwind',  
-
     'emp_details',
     'ticket.apps.TicketConfig',
 
@@ -80,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'caseSystem.wsgi.application'
+WSGI_APPLICATION = 'caseSystem.wsgi.app'
 
 
 # Database
